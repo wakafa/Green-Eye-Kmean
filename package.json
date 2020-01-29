@@ -1,0 +1,20 @@
+{
+  "name": "green-eye-kmean",
+  "version": "1.0.0",
+  "description": "Kmean server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wakafa/Green-Eye-Kmean.git"
+  },
+  "author": "Mor Cohen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wakafa/Green-Eye-Kmean/issues"
+  },
+  "homepage": "https://github.com/wakafa/Green-Eye-Kmean#readme"
+}
