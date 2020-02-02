@@ -25,7 +25,7 @@ export class AppComponent {
 
   checkFunc = () => {
     this.restService.getKmeanResults(this.k).subscribe(res => {
-      console.log('FUCK');
+      console.log("posting with + " + this.k);
     })
   }
 }
