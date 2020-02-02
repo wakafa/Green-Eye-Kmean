@@ -21,7 +21,7 @@ let startServer = () => {
 
   app.post('/kmean', async (req, res) => {
     let clusters = await kmeanHandler.clusterize(req.body.k);
-    let formattedClusters = kmeanHandler.formatClusters(clusters);
+    let formattedClusters = kmeanHandler.formatClustersWithRandomSamples(clusters);
     res.json({ clusters: formattedClusters, k_used: req.body.k });
     res.end();
   })

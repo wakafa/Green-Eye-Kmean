@@ -11,11 +11,14 @@ let clusterize = async (k) => {
     });
 }
 
-let formatClusters = (clusters) => {
+let formatClustersWithRandomSamples = (clusters) => {
+    let groups = clusters.groups;
     let formattedClusters = {};
-    for (let i = 0; i < clusters.length; i++) {
-        let center = clusters[i].centroid;
-        let randoms = pickRandoms(clusters[i].cluster, NUM_OF_SAMPLES);
+    for (let i = 0; i < groups.length; i++) {
+        let center = groups[i].centroid;
+        let randoms = pickRandoms(groups[i].cluster, NUM_OF_SAMPLES);
+        let data = { center, randoms };
+        formattedClusters[i] = data;
     }
     return formattedClusters;
 }
@@ -31,8 +34,5 @@ let pickRandoms = (clusters, n) => {
     return randoms;
 }
 
-clusterize(4).then(x => {
-    formatClusters(x.groups);
-})
-module.exports.formatClusters = formatClusters;
+module.exports.formatClustersWithRandomSamples = formatClustersWithRandomSamples;
 module.exports.clusterize = clusterize;
