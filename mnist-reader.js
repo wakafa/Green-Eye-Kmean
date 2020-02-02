@@ -26,6 +26,7 @@ for (var image = 0; image < IMAGE_LIM; image++) {
 }
 
 let groupedImages = {};
+let datasetArray = [];
 
 pixelValues.forEach(image => {
     for (let digit in image) {
@@ -34,8 +35,10 @@ pixelValues.forEach(image => {
         } else {
             groupedImages[digit] = [image[digit]];
         }
+        datasetArray.push(image[digit]);
     }
 })
 
 module.exports.DATASET = pixelValues;
+module.exports.DATASET_ARRAY = datasetArray;
 module.exports.DATASET_GROUPED_BY_LABEL = groupedImages;
