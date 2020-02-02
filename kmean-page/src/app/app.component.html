@@ -13,5 +13,22 @@
   </select>
 
 </div>
-<div><button (click)="sendHello()">Calculat Kmean</button></div>
-<div><button (click)="checkFunc()">CCheck Fun</button></div>
+<div><button (click)="calculateKmean()">Calculate Kmean</button></div>
+<div>
+  <ul>
+    <li *ngFor="let clusterLabel of clusterLabels">
+      <div>
+        <p>
+          {{ clusterLabel }}
+        </p>
+        <p> center : {{clusters[clusterLabel].center}}</p>
+        <p>
+          randoms:
+    <li *ngFor="let randomCluster of clusters[clusterLabel].randoms">
+      {{randomCluster}}
+    </li>
+    </p>
+</div>
+</li>
+</ul>
+</div>

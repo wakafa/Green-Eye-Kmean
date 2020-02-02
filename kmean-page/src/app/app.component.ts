@@ -14,8 +14,8 @@ export class AppComponent {
   title = 'kmean-page';
   _baseUrl: string;
   k: number = 2;
-  images = [];
-  temp;
+  clusters = [];
+  clusterLabels: string[];
 
   constructor(private http: HttpClient, private restService: RestServiceService) { }
 
@@ -23,9 +23,10 @@ export class AppComponent {
 
   updatek = (newk: number) => { this.k = newk; };
 
-  checkFunc = () => {
+  calculateKmean = () => {
     this.restService.getKmeanResults(this.k).subscribe(res => {
-      console.log("posting with + " + this.k);
+      this.clusters = res.clusters;
+      this.clusterLabels = Object.keys(res.clusters);
     })
   }
 }
