@@ -1,16 +1,17 @@
 const fs = require('fs');
 const dir = __dirname + '\\MNIST_DATASET\\';
-const IMAGE_LIM = 59999;
+const IMAGE_LIM = 1000;
 const NUM_OF_ROWS = 28;
 const NUM_OF_COLUMNS = 28;
 const PIXEL_OFFEST = 15;
 const ROW_OFFSET = 8;
 
-var dataFileBuffer = fs.readFileSync(dir + 'train-images.idx3-ubyte');
-var labelFileBuffer = fs.readFileSync(dir + 'train-labels.idx1-ubyte');
-var pixelValues = [];
+let dataFileBuffer = fs.readFileSync(dir + 'train-images.idx3-ubyte');
+let labelFileBuffer = fs.readFileSync(dir + 'train-labels.idx1-ubyte');
+let pixelValues = [];
+let imageVectors = []
 
-for (var image = 0; image <= IMAGE_LIM; image++) {
+for (var image = 0; image < IMAGE_LIM; image++) {
     var pixels = [];
 
     for (var x = 0; x < NUM_OF_ROWS; x++) {
@@ -23,6 +24,8 @@ for (var image = 0; image <= IMAGE_LIM; image++) {
     imageData[JSON.stringify(labelFileBuffer[image + ROW_OFFSET])] = pixels;
 
     pixelValues.push(imageData);
+    imageVectors.push(pixels);
 }
 
 module.exports.DATASET = pixelValues;
+module.exports.DATASET_IMAGE_VECTORS = imageVectors;
