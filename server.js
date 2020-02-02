@@ -1,9 +1,8 @@
 const express = require("express");
 const app = express();
 const bodyParser = require('body-parser');
-const kmeans = require('node-kmeans');
-const DATASET = require('./mnist-reader');
-const DEFAULT_K = 4;
+const kmeanHandler = require('./kmean-handler');
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -21,8 +20,9 @@ let startServer = () => {
   });
 
   app.post('/kmean', async (req, res) => {
-    let clusters = await clusterize(req.body.k);
-    res.json({ clusters, k: req.body.k });
+    let clusters = await kmeanHandler.clusterize(req.body.k);
+    let formattedClusters = kmeanHandler.formatClusters(clusters);
+    res.json({ clusters: formattedClusters, k_used: req.body.k });
     res.end();
   })
 
@@ -30,13 +30,5 @@ let startServer = () => {
 
   app.listen(port, () => console.log(`Listetning on port ${port} ... `));
 }
-
-let clusterize = async (k) => {
-  k = Number(k) ? k : DEFAULT_K;
-  return kmeans.clusterize(DATASET.DATASET_ARRAY, { k }, (err, res) => {
-    if (err) console.error(err);
-  });
-}
-
 
 startServer();
