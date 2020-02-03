@@ -1,0 +1,26 @@
+{
+    "name": "green-eye-kmean",
+    "version": "1.0.0",
+    "description": "Kmean server",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start-server": "cd server && npm start",
+        "start-app": "cd kmean-page && ng serve --open",
+        "start": "concurrently --kill-others \"npm run start-server\" \"npm run start-app\"",
+        "build": "npm i && cd server && npm i | cd ../kmean-page && npm i"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/wakafa/Green-Eye-Kmean.git"
+    },
+    "author": "Mor Cohen",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/wakafa/Green-Eye-Kmean/issues"
+    },
+    "homepage": "https://github.com/wakafa/Green-Eye-Kmean#readme",
+    "dependencies": {
+        "concurrently": "^5.1.0"
+    }
+}
