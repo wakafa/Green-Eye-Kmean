@@ -9,7 +9,7 @@
         "start-app": "cd kmean-page && npm start --open",
         "start": "concurrently --kill-others \"npm run start-server\" \"npm run start-app\"",
         "server-install": "cd server && npm i",
-        "app-install": "cd kmean && npm i",
+        "app-install": "cd kmean-page && npm i",
         "build": "npm i && npm run server-install && npm run app-install"
     },
     "repository": {
