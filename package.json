@@ -8,7 +8,7 @@
         "start-server": "cd server && npm start",
         "start-app": "cd kmean-page && ng serve --open",
         "start": "concurrently --kill-others \"npm run start-server\" \"npm run start-app\"",
-        "build": "npm i && cd server && npm i | cd ../kmean-page && npm i"
+        "build": "npm i && cd server && npm i | cd kmean-page && npm i"
     },
     "repository": {
         "type": "git",

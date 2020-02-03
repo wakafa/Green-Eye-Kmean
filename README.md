@@ -7,7 +7,7 @@ USAGE:
 
 Make sure you have node and angular installed on your machine( with CLI)
 
-1.At main folder (cmd): "npm build"
+1.At main folder (cmd): "npm run-script build"
 
 2.At main folder (cmd): ""npm start"
 
