@@ -14,7 +14,7 @@ export class AppComponent {
   title = 'kmean-page';
   _baseUrl: string;
   k: number = 2;
-  clusters = [];
+  clusters: any;
   clusterLabels: string[];
 
   constructor(private http: HttpClient, private restService: RestServiceService) { }
@@ -25,8 +25,8 @@ export class AppComponent {
 
   calculateKmean = () => {
     this.restService.getKmeanResults(this.k).subscribe(res => {
-      this.clusters = res.clusters;
-      this.clusterLabels = Object.keys(res.clusters);
+      this.clusters = (res as any).clusters;
+      this.clusterLabels = Object.keys(this.clusters);
     })
   }
 }
