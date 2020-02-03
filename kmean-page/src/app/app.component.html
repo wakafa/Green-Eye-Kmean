@@ -14,18 +14,20 @@
 
 </div>
 <div><button (click)="calculateKmean()">Calculate Kmean</button></div>
+<div><button id="btn-results" (click)="drawClusters()" style='display:none'>Show Results</button></div>
 <div>
-  <ul>
-    <li *ngFor="let clusterLabel of clusterLabels">
+  <ul style='list-style: none'>
+    <li  style='display : inline' *ngFor="let clusterLabel of clusterLabels">
       <div>
         <p>
-          {{ clusterLabel }}
+          Cluster Label : {{ clusterLabel }}
         </p>
-        <p> center : {{clusters[clusterLabel].center}}</p>
+        <p> center</p>
+        <canvas id="{{'canvas-label-' +  clusterLabel}}"></canvas>
         <p>
           randoms:
-    <li *ngFor="let randomCluster of clusters[clusterLabel].randoms">
-      {{randomCluster}}
+    <li *ngFor="let randomCluster of clusters[clusterLabel].randoms; let i = index">
+      <canvas id="{{'canvas-random-' + clusterLabel + '-' + i}}"></canvas>
     </li>
     </p>
 </div>
