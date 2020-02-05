@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path')
 const dir = __dirname + path.sep + 'MNIST_DATASET' + path.sep;
-const IMAGE_LIM = 100;
+const IMAGE_LIM = 60000;
 const NUM_OF_ROWS = 28;
 const NUM_OF_COLUMNS = 28;
 const PIXEL_OFFEST = 15;

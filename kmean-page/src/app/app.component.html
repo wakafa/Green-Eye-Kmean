@@ -1,6 +1,6 @@
 <div>
-  Welcome to Kmean calculator! please choose your k :
-  <select name="k-dropdown" #t (change)="updatek(t.value)">
+    Welcome to Kmean calculator! please choose your k :
+    <select name="k-dropdown" #t (change)="updatek(t.value)">
     <option value="2">2</option>
     <option value="3">3</option>
     <option value="4">4</option>
@@ -14,23 +14,24 @@
 
 </div>
 <div><button (click)="calculateKmean()">Calculate Kmean</button></div>
+<div id="in-progress"></div>
 <div><button id="btn-results" (click)="drawClusters()" style='display:none'>Show Results</button></div>
 <div>
-  <ul style='list-style: none'>
-    <li  style='display : inline' *ngFor="let clusterLabel of clusterLabels">
-      <div>
-        <p>
-          Cluster Label : {{ clusterLabel }}
-        </p>
-        <p> center</p>
-        <canvas id="{{'canvas-label-' +  clusterLabel}}"></canvas>
-        <p>
-          randoms:
-    <li *ngFor="let randomCluster of clusters[clusterLabel].randoms; let i = index">
-      <canvas id="{{'canvas-random-' + clusterLabel + '-' + i}}"></canvas>
-    </li>
-    </p>
-</div>
-</li>
-</ul>
+    <ul style='list-style: none'>
+        <li style='display : inline' *ngFor="let clusterLabel of clusterLabels">
+            <div>
+                <p>
+                    Cluster Label : {{ clusterLabel }}
+                </p>
+                <p> center</p>
+                <canvas id="{{'canvas-label-' +  clusterLabel}}"></canvas>
+                <p>
+                    randoms:
+                    <li *ngFor="let randomCluster of clusters[clusterLabel].randoms; let i = index">
+                        <canvas id="{{'canvas-random-' + clusterLabel + '-' + i}}"></canvas>
+                    </li>
+                </p>
+            </div>
+        </li>
+    </ul>
 </div>

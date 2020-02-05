@@ -28,11 +28,17 @@ export class AppComponent {
   updatek = (newk: number) => { this.k = newk; };
 
   calculateKmean = () => {
+    let pElement = document.createElement("p");
+    let inProgressMessege = document.createTextNode("Calculating! please wait...");
+    let inProgressElement = document.getElementById("in-progress")
+    pElement.appendChild(inProgressMessege);
+    document.getElementById("in-progress").appendChild(inProgressMessege);
     this.restService.getKmeanResults(this.k).subscribe(res => {
       this.clusters = (res as any).clusters;
       this.clusterLabels = Object.keys(this.clusters);
+      document.getElementById("btn-results").style.display = 'block';
+      inProgressElement.textContent = 'Done!';
     })
-    document.getElementById("btn-results").style.display = 'block';
   }
 
   drawClusters = () => {
