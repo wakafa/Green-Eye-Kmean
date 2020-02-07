@@ -53,7 +53,7 @@ let writePngImage = (source, name) => {
     for (let y = 0; y < png.height; y++) {
         for (let x = 0; x < png.width; x++) {
             let idx = (png.width * y + x) << 2;
-            let data = pngsource[idx];
+            let data = source[idx];
             png.data[idx] = data;
             png.data[idx + 1] = data;
             png.data[idx + 2] = data;
@@ -62,7 +62,6 @@ let writePngImage = (source, name) => {
     }
     png.pack().pipe(fs.createWriteStream(name));
 }
-
 
 
 module.exports.DATASET = pixelValues;
