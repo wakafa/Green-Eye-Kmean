@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const PNG = require('pngjs').PNG;
 const dir = __dirname + path.sep + 'MNIST_DATASET' + path.sep;
-const IMAGE_LIM = 60000;
+const IMAGE_LIM = 10000;
 const IMG_WIDTH = 28;
 const IMG_HEIGHT = 28;
 const PIXEL_OFFEST = 16;
@@ -21,7 +21,7 @@ for (var image = 0; image < IMAGE_LIM; image++) {
         for (var x = 0; x < IMG_WIDTH; x++) {
             let imgIndex = (image * IMG_WIDTH * IMG_HEIGHT) + PIXEL_OFFEST;
             let pixelIndex = (x + (y * IMG_WIDTH));
-            let pixelValue = dataFileBuffer.readUInt8(imgIndex + pixelIndex);
+            let pixelValue = dataFileBuffer[imgIndex + pixelIndex];
             for (let i = 0; i < CHANNELS; i++) {
                 pixels.push(pixelValue);
             }
