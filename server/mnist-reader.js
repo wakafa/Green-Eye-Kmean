@@ -2,11 +2,12 @@ const fs = require('fs');
 const path = require('path');
 const PNG = require('pngjs').PNG;
 const dir = __dirname + path.sep + 'MNIST_DATASET' + path.sep;
-const IMAGE_LIM = 100;
+const IMAGE_LIM = 60000;
 const IMG_WIDTH = 28;
 const IMG_HEIGHT = 28;
 const PIXEL_OFFEST = 16;
 const ROW_OFFSET = 8;
+const CHANNELS = 4;
 
 let dataFileBuffer = fs.readFileSync(dir + 'train-images.idx3-ubyte');
 let labelFileBuffer = fs.readFileSync(dir + 'train-labels.idx1-ubyte');
@@ -18,13 +19,17 @@ for (var image = 0; image < IMAGE_LIM; image++) {
 
     for (var y = 0; y < IMG_HEIGHT; y++) {
         for (var x = 0; x < IMG_WIDTH; x++) {
-            pixels.push(dataFileBuffer[(image * IMG_WIDTH * IMG_HEIGHT) + (x + (y * IMG_WIDTH)) + PIXEL_OFFEST]);
+            let imgIndex = (image * IMG_WIDTH * IMG_HEIGHT) + PIXEL_OFFEST;
+            let pixelIndex = (x + (y * IMG_WIDTH));
+            let pixelValue = dataFileBuffer.readUInt8(imgIndex + pixelIndex);
+            for (let i = 0; i < CHANNELS; i++) {
+                pixels.push(pixelValue);
+            }
         }
     }
 
     var imageData = {};
     imageData[JSON.stringify(labelFileBuffer[image + ROW_OFFSET])] = pixels;
-
 
     pixelValues.push(imageData);
 }
@@ -49,20 +54,9 @@ let writePngImage = (source, name) => {
         height: 28,
         filterType: -1
     })
-
-    for (let y = 0; y < png.height; y++) {
-        for (let x = 0; x < png.width; x++) {
-            let idx = (png.width * y + x) << 2;
-            let data = source[idx];
-            png.data[idx] = data;
-            png.data[idx + 1] = data;
-            png.data[idx + 2] = data;
-            png.data[idx + 3] = data >> 1;
-        }
-    }
+    png.data = source;
     png.pack().pipe(fs.createWriteStream(name));
 }
-
 
 module.exports.DATASET = pixelValues;
 module.exports.DATASET_ARRAY = datasetArray;
